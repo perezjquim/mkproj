@@ -1,0 +1,48 @@
+#!/bin/bash
+#MAKEPROJ
+
+    if [ $1 == "c" ] ; then
+        mkdir "$2";
+	cd "$2";
+
+	makemake c;
+
+	echo "#include <stdio.h>" > ${PWD##*/}.c;
+	echo "#include <stdlib.h>" >> ${PWD##*/}.c;
+	echo "#include <unistd.h>" >> ${PWD##*/}.c;
+	echo "" >> ${PWD##*/}.c;
+        echo "int main()" >> ${PWD##*/}.c;
+	echo "{" >> ${PWD##*/}.c;
+	echo "	printf(\"Great success\n\");" >> ${PWD##*/}.c;
+	echo "	return 0;" >> ${PWD##*/}.c;
+	echo "}" >> ${PWD##*/}.c; 
+	
+	echo "@Foi criado com um projeto para C@"
+    else
+
+        if [ $1 == "java" ] ; then
+	   	mkdir "$2";
+		cd "$2";
+
+		makemake java;
+
+		echo "package ${PWD##*/};" > ${PWD##*/}.java;
+        	echo "" >> ${PWD##*/}.java;
+		echo "public class ${PWD##*/}" >> ${PWD##*/}.java;
+		echo "{" >> ${PWD##*/}.java;
+		echo "" >> ${PWD##*/}.java;
+		echo "	public static void main(String[] args)" >> ${PWD##*/}.java;
+		echo "	{" >> ${PWD##*/}.java;
+		echo "		System.out.println(\"Great success\");" >> ${PWD##*/}.java;
+		echo "	}" >> ${PWD##*/}.java;
+		echo "" >> ${PWD##*/}.java;
+		echo "}">> ${PWD##*/}.java;  
+
+		echo "@Foi criado um projeto para Java@"
+
+	else
+		echo "@Tipo incorreto.@";
+		echo "@Tente novamente (ex.: mkproj c bosta ou mkproj java bosta).@";
+	fi
+
+    fi
