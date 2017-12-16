@@ -45,6 +45,18 @@ case $1 in
 
 		;;
 
+	nodejs) 
+		mkdir "$2";
+		cd "$2";
+
+		mkmake nodejs;
+
+		echo "console.log(\"Great sucess\n\")" > ${PWD##*/}.js;
+		
+		echo "@Foi criado um projeto para Nodejs@";
+ 
+		;;
+
 	*)
 		echo "@Tipo incorreto.@";
 		echo "@Tente novamente (ex.: 'mkproj c bosta' ou 'mkproj java bosta').@";
