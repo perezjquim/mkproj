@@ -66,6 +66,15 @@ case $1 in
 		echo "@Foi criado um projeto para Prolog@";
 		;;
 
+	python)
+		mkdir "$2";
+		cd "$2";
+		mkmake python;
+		echo "print \"Great success\";" > ${PWD##*/}.py;
+		echo "@Foi criado um projeto para Python@";
+
+		;;
+
 	*)
 		echo "@Tipo incorreto.@";
 		echo "@Tente novamente (ex.: 'mkproj c bosta' ou 'mkproj java bosta').@";
