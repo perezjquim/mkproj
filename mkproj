@@ -17,10 +17,10 @@ case $1 in
 		echo "{" >> ${PWD##*/}.c;
 		echo "	printf(\"Great success\n\");" >> ${PWD##*/}.c;
 		echo "	return 0;" >> ${PWD##*/}.c;
-		echo "}" >> ${PWD##*/}.c; 
-	
+		echo "}" >> ${PWD##*/}.c;
+
 		echo "@Foi criado com um projeto para C@"
-    		
+
 		;;
 
 	java)
@@ -39,22 +39,31 @@ case $1 in
 		echo "		System.out.println(\"Great success\");" >> ${PWD##*/}.java;
 		echo "	}" >> ${PWD##*/}.java;
 		echo "" >> ${PWD##*/}.java;
-		echo "}">> ${PWD##*/}.java;  
+		echo "}">> ${PWD##*/}.java;
 
 		echo "@Foi criado um projeto para Java@"
 
 		;;
 
-	nodejs) 
+	nodejs)
 		mkdir "$2";
 		cd "$2";
 
 		mkmake nodejs;
 
 		echo "console.log(\"Great sucess\n\")" > ${PWD##*/}.js;
-		
+
 		echo "@Foi criado um projeto para Nodejs@";
- 
+
+		;;
+
+	prolog)
+
+		mkdir "$2";
+		cd "$2";
+		mkmake prolog;
+		echo "${PWD##*/}:-writeln('Great success')." > ${PWD##*/}.pl;
+		echo "@Foi criado um projeto para Prolog@";
 		;;
 
 	*)
