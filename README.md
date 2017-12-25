@@ -8,4 +8,6 @@
 ### - Python
 ## Isto já inclui o makefile respetivo e um ficheiro já pronto a ser compilado (e um manifesto, no caso do Java).
 
+Este script depende de outro script (mkmake - https://github.com/perezjquim/mkmake).
 Para instalar basta fazer 'make' na diretoria onde foram extraídos os ficheiros.
+
