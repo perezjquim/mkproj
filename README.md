@@ -1,5 +1,5 @@
 # mkproj
-## Este script cria de forma automática uma diretoria com um template de um projeto predefinido conforme a linguagem de programação.
+## Este script gera de forma automática um template para um projeto de software sob uma determinada linguagem de programação.
 ## Linguagens de programação:
 ### - Java
 ### - C
@@ -8,6 +8,6 @@
 ### - Python
 ## Isto já inclui o makefile respetivo e um ficheiro já pronto a ser compilado (e um manifesto, no caso do Java).
 
-Este script depende de outro script (mkmake - https://github.com/perezjquim/mkmake).
-Para instalar basta fazer 'make' na diretoria onde foram extraídos os ficheiros.
+Este script depende de outro script (<a href="https://github.com/perezjquim/mkmake">mkmake</a>).
+Para instalar basta fazer [make] na diretoria onde foram extraídos os ficheiros.
 
