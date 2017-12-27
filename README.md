@@ -4,7 +4,7 @@
 
 ## Linguagens de programação:
 
-### - Java
+- Java
 - C
 - Nodejs
 - Prolog
