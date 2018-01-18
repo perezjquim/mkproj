@@ -1,14 +1,15 @@
 #!/bin/bash
-#MAKEPROJ
+
+###############
+## MAKEPROJ ##
+###############
 
 case $1 in
 
 	c)
         	mkdir "$2";
 		cd "$2";
-
 		mkmake c;
-
 		echo "#include <stdio.h>" > ${PWD##*/}.c;
 		echo "#include <stdlib.h>" >> ${PWD##*/}.c;
 		echo "#include <unistd.h>" >> ${PWD##*/}.c;
@@ -18,17 +19,13 @@ case $1 in
 		echo "	printf(\"Great success\n\");" >> ${PWD##*/}.c;
 		echo "	return 0;" >> ${PWD##*/}.c;
 		echo "}" >> ${PWD##*/}.c;
-
-		echo "@Foi criado com um projeto para C@"
-
+		echo "@ C project generated from a template. @";
 		;;
 
 	java)
 	   	mkdir "$2";
 		cd "$2";
-
 		mkmake java;
-
 		echo "package ${PWD##*/};" > ${PWD##*/}.java;
         	echo "" >> ${PWD##*/}.java;
 		echo "public class ${PWD##*/}" >> ${PWD##*/}.java;
@@ -40,30 +37,23 @@ case $1 in
 		echo "	}" >> ${PWD##*/}.java;
 		echo "" >> ${PWD##*/}.java;
 		echo "}">> ${PWD##*/}.java;
-
-		echo "@Foi criado um projeto para Java@"
-
+		echo "@ Java project generated from a template. @";
 		;;
 
 	nodejs)
 		mkdir "$2";
 		cd "$2";
-
 		mkmake nodejs;
-
 		echo "console.log(\"Great sucess\n\")" > ${PWD##*/}.js;
-
-		echo "@Foi criado um projeto para Nodejs@";
-
+		echo "@ Node.js project generated from a template. @";
 		;;
 
 	prolog)
-
 		mkdir "$2";
 		cd "$2";
 		mkmake prolog;
 		echo "${PWD##*/}:-writeln('Great success')." > ${PWD##*/}.pl;
-		echo "@Foi criado um projeto para Prolog@";
+		echo "@ Prolog project generated from a template. @";
 		;;
 
 	python)
@@ -71,14 +61,12 @@ case $1 in
 		cd "$2";
 		mkmake python;
 		echo "print \"Great success\";" > ${PWD##*/}.py;
-		echo "@Foi criado um projeto para Python@";
-
+		echo "@ Python project generated from a template. @";
 		;;
 
 	*)
-		echo "@Tipo incorreto.@";
-		echo "@Tente novamente (ex.: 'mkproj c bosta' ou 'mkproj java bosta').@";
-
+		echo "@ Invalid option. @";
+		echo "@ Try again. (example: 'mkproj c acertaincproject' ou 'mkproj java acertainjavaproject'). @";
 		;;
 
 esac

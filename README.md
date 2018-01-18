@@ -1,8 +1,8 @@
-# mkproj
+# MKPROJ
 
-## Este script gera de forma automática um template para um projeto de software sob uma determinada linguagem de programação.
+## This script generates a generic template for a software project under a certain programming language.
 
-## Linguagens de programação:
+## Programming languages available:
 
 - Java
 - C
@@ -10,15 +10,17 @@
 - Prolog
 - Python
 
-## De forma geral, inclui o makefile respetivo e um ficheiro com código-fonte já pronto a ser compilado e executado.
+## In short, the template includes a directory that has a makefile <short>(according to the programming language)</short> and generic source-code ready to be compiled and executed.
 
-Este script depende de outro script (<a href="https://github.com/perezjquim/mkmake">mkmake</a>).
+This script depends on another script of mine - <a href="https://github.com/perezjquim/mkmake">mkmake</a>.
 
 ### <a href=https://github.com/perezjquim/mkproj/archive/master.zip>DOWNLOAD</a>
 
-Para instalar basta fazer `make` na diretoria onde foram extraídos os ficheiros.
+Installation instruction: execute the command `make` in the directory which you extracted the .zip file.
 
-## Exemplo de uso: 
+## Examples of use:
 
-`mkproj java projetocincoestrelas`
+`mkproj java acertainjavaproject`
+`mkproj c acertaincproject`
+`mkproj prolog acertainprologproject`
 
