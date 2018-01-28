@@ -1,6 +1,6 @@
 # MKPROJ
 
-## This script generates a generic template for a software project under a certain programming language.
+### Applies a generic template for a software project under a certain programming language, to get right into development.
 
 ## Programming languages available:
 
@@ -10,17 +10,26 @@
 - Prolog
 - Python
 
-## In short, the template includes a directory that has a makefile <short>(according to the programming language)</short> and generic source-code ready to be compiled and executed.
+### In short, it creates includes a directory that has a makefile (specific to the programming language) and generic source-code ready to be compiled and executed. Depends on another script of mine - <a href="https://github.com/perezjquim/mkmake">mkmake</a>.
 
-This script depends on another script of mine - <a href="https://github.com/perezjquim/mkmake">mkmake</a>.
+## Example of use (GUI):
+<img src="http://imgur.com/AZRXryNl.png"/>
+***
+<img src="http://imgur.com/YgIoCJUl.png"/>
+***
+<img src="http://imgur.com/fepSBT0l.png"/>
+***
+<img src="http://imgur.com/WACRKVAl.png"/>
 
-## Examples of use:
+## Examples of use (CLI):
 
 `mkproj java acertainjavaproject`
 
 `mkproj c acertaincproject`
 
 `mkproj prolog acertainprologproject`
+
+
 
 ## <a href="https://github.com/perezjquim/mkproj/archive/master.zip"> DOWNLOAD </a>
 
