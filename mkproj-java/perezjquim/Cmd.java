@@ -1,11 +1,11 @@
-package mkproj;
+package perezjquim;
 import java.io.*;
 import java.util.*;
 import javax.swing.*;
 
-public class Util
+public class Cmd
 {
-	public static void execCmd(String cmd, JTextArea output)
+	public static void exec(String cmd, JTextArea output)
 	{
 		try
 		{
@@ -19,7 +19,7 @@ public class Util
 		{ e.printStackTrace(); }
 	}
 	
-	public static void execCmd(String cmd)
+	public static void exec(String cmd)
 	{
 		try
 		{
