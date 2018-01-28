@@ -4,9 +4,12 @@ import perezjquim.GUI.*;
 
 public class Mkproj
 {
+	private static String destination;
+	private static GUI main;
 	public static void main(String[] args)
 	{
-		GUI main = new GUI("Mkproj");
+		destination = "";
+		main = new GUI("Mkproj");
 
 		Panel panName = new Panel("Project name");
 		TextField field = new TextField();
@@ -22,10 +25,29 @@ public class Mkproj
 		main.add(panLang);
 		
 		Panel panGen = new Panel("Generate project");
-		panGen.add(new Button("Select destination folder", () -> new FolderChooserWindow()));
-		panGen.add(new Button("Generate", () -> Cmd.exec("echo ola")));
+		panGen.add(new Button("Select destination folder", () -> 
+							{
+								destination = IO.askFolder();
+							}));
+							
+		panGen.add(new Button("Generate", () -> 
+							{
+								generateProject();
+							}));
+							
 		main.add(panGen);
 		
 		main.start();
+	}
+	
+	public static void generateProject()
+	{
+		if(destination.equals(""))
+		{	IO.popup("No destination folder selected");		}
+
+		else 
+		{
+			
+		}		
 	}
 }
