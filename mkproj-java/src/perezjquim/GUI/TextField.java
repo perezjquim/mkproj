@@ -5,9 +5,10 @@ import java.awt.event.*;
 
 public class TextField extends JFormattedTextField
 {
+	private static final int WIDTH = 30;
 	public TextField()
 	{
 		super();
-		this.setColumns(30);
+		this.setColumns(WIDTH);
 	}
 }

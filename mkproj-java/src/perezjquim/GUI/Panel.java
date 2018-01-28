@@ -5,6 +5,10 @@ import java.awt.event.*;
 
 public class Panel extends JPanel
 {
+	public Panel()
+	{
+		super();
+	}
 	public Panel(String label)
 	{
 		super();

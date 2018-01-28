@@ -8,7 +8,6 @@ public class Mkproj
 	{
 		GUI main = new GUI("Mkproj");
 
-		
 		Panel panName = new Panel("Project name");
 		TextField field = new TextField();
 		panName.add(field);
@@ -23,7 +22,7 @@ public class Mkproj
 		main.add(panLang);
 		
 		Panel panGen = new Panel("Generate project");
-		panGen.add(new Button("Select destination folder", () -> Cmd.exec("echo ola")));
+		panGen.add(new Button("Select destination folder", () -> new FolderChooserWindow()));
 		panGen.add(new Button("Generate", () -> Cmd.exec("echo ola")));
 		main.add(panGen);
 		

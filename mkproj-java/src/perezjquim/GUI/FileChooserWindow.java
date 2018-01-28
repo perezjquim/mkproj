@@ -9,9 +9,10 @@ public class FileChooserWindow extends GUI
 	{
 		super("Choose a file");
 		
-		this.add(new JFileChooser());
+		Panel pan = new Panel();
+		pan.add(new JFileChooser());
+		add(pan);
 		
 		start();
-		
 	}
 }
