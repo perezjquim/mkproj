@@ -29,9 +29,8 @@
 
 `mkproj prolog acertainprologproject`
 
-
-
-## <a href="https://github.com/perezjquim/mkproj/archive/master.zip"> DOWNLOAD </a>
+## GUI (Java) version - <a href="https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/perezjquim/mkproj/tree/master/mkproj-bash"> DOWNLOAD </a>
+## CLI (Bash) version - <a href="https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/perezjquim/mkproj/tree/master/mkproj-java"> DOWNLOAD </a>
 
 Installation instructions: execute the command `make` in the directory which you extracted the .zip file.
 
