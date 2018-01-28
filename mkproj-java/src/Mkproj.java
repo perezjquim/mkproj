@@ -52,22 +52,67 @@ public class Mkproj
 	{
 		if(destination == null)
 		{	IO.popup("No destination folder selected");		}
-
-		else 
+		
+		else
 		{
-			Cmd.exec("mkdir "+name.getText()+"\n",destination);
-			Cmd.exec("mkmake c",new File(destination+"/"+name.getText()));
-			Util.writeFile(destination+"/"+name.getText()+"/"+name.getText()+".c",
-												"#include <stdio.h>\n"+
-												"#include <stdlib.h>\n"+
-												"#include <unistd.h>\n"+
-												"\n"+
-												"int main()\n"+
-												"{\n"+
-												"	printf(\"Great success\\n\");\n"+
-												"	return 0;\n"+
-												"}\n");
+			String lang = getSelectedOption();
+			
+			if(lang == null)
+			{	IO.popup("No language selected");		}
+			
+			else
+			{
+				String projName = name.getText();
+				String folderPath = destination+"/"+projName;
+				String srcPath =  folderPath+"/"+projName;
+				Cmd.exec("mkdir "+projName,destination);
+				
+				switch(lang)
+				{
+					case "C":
+						Cmd.exec("mkmake c",new File(folderPath));
+						srcPath += ".c";
+						IO.writeFile(srcPath,
+											"#include <stdio.h>\n"+
+											"#include <stdlib.h>\n"+
+											"#include <unistd.h>\n"+
+											"\n"+
+											"int main()\n"+
+											"{\n"+
+											"	printf(\"Great success\\n\");\n"+
+											"	return 0;\n"+
+											"}");
+						IO.popup("C project generated successfully");
+						break;
+					case "Java":
+						Cmd.exec("mkmake java",new File(folderPath));
+						srcPath += ".java";
+						IO.writeFile(srcPath,
+											"package "+projName+";\n"+
+											"\n"+
+											"public class "+projName+"\n"+
+											"{\n"+
+											"	public static void main(String[] args)\n"+
+											"	{\n"+
+											"		System.out.println(\"Great success\");\n"+
+											"	}\n"+
+											"}\n");
+						IO.popup("Java project generated successfully");
+						break;
+					default:
+						break;		
+				}			
+			}
 		}		
+	}
+	public static String getSelectedOption()
+	{
+		for(RadioButton r : options)
+		{
+			if(r.isSelected())
+			{ return r.getText(); }
+		}
+		return null;
 	}
 }
 
