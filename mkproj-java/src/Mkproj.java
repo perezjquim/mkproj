@@ -5,11 +5,17 @@ import java.io.*;
 
 public class Mkproj
 {
-	private static File destination;
-	private static TextField name;
+	/* MAIN WINDOW */
 	private static GUI main;
 	
-	private static final RadioButton[] options =
+	/* USER-INPUT DESTINATION FOLDER */
+	private static File destination;
+	
+	/* FIELD FOR THE PROJECT NAME */
+	private static TextField name;
+	
+	/* SELECTABLE PROGRAMMING LANGUAGES */
+	private static final RadioButton[] radios =
 												{
 													new RadioButton("Java"),
 													new RadioButton("C"),
@@ -17,40 +23,52 @@ public class Mkproj
 													new RadioButton("Prolog"),
 													new RadioButton("Node.js")
 												};
-												 
-	private static final String genC ="";
+				
+	/* MAIN FUNCTION */									 
 	public static void main(String[] args)
 	{
 		main = new GUI("Mkproj");
 
+		/* PANEL 'PROJECT NAME' */
 		Panel panName = new Panel("Project name");
-		name = new TextField();
+
+		// Text field to be filled by the user
+		name = new TextField();													
 		panName.add(name);
 		main.add(panName);
 				
+		/* PANEL 'PROGRAMMING LANGUAGE' */
 		Panel panLang = new Panel("Programming language");
-		panLang.addButtonGroup(options);
+		
+		// The options/radio buttons are added to the panel
+		panLang.addButtonGroup(options);									
 		main.add(panLang);
 		
+		/* PANEL 'GENERATE PROJECT' */
 		Panel panGen = new Panel("Generate project");
-		panGen.add(new Button("Select destination folder", () -> 
+		
+		// Button that leads to user's selection of the destination folder
+		panGen.add(new Button("Select destination folder", () -> 	
 							{
 								destination = IO.askFolder();
 							}));
 							
-		panGen.add(new Button("Generate", () -> 
+		// Button that leads to the generation of a certain project					
+		panGen.add(new Button("Generate", () -> 					
 							{
 								generateProject();
 							}));
 							
 		main.add(panGen);
 		
-		main.start();
+		// The main window becomes visible
+		main.start();																	
 	}
 	
+	// PROJECT GENERATION
 	public static void generateProject()
 	{
-		if(destination == null)
+		if(destination == null)														// Checks
 		{	IO.popup("No destination folder selected");		}
 		
 		else
@@ -99,8 +117,27 @@ public class Mkproj
 											"}\n");
 						IO.popup("Java project generated successfully");
 						break;
-					default:
-						break;		
+					case "Node.js":
+						Cmd.exec("mkmake nodejs",new File(folderPath));
+						srcPath += ".js";
+						IO.writeFile(srcPath,
+											"console.log(\"Great success\")");
+						IO.popup("Node.js project generated successfully");
+						break;
+					case "Python":
+						Cmd.exec("mkmake python",new File(folderPath));
+						srcPath += ".py";
+						IO.writeFile(srcPath,
+											"print \"Great success\";");
+						IO.popup("Python project generated successfully");
+						break;
+					case "Prolog":
+						Cmd.exec("mkmake prolog",new File(folderPath));
+						srcPath += ".pl";
+						IO.writeFile(srcPath,
+											projName+":-writeln('Great success').");
+						IO.popup("Prolog project generated successfully");
+						break;
 				}			
 			}
 		}		
