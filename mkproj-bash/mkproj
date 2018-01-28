@@ -10,6 +10,7 @@ case $1 in
         	mkdir "$2";
 		cd "$2";
 		mkmake c;
+		
 		echo "#include <stdio.h>" > ${PWD##*/}.c;
 		echo "#include <stdlib.h>" >> ${PWD##*/}.c;
 		echo "#include <unistd.h>" >> ${PWD##*/}.c;
@@ -19,6 +20,7 @@ case $1 in
 		echo "	printf(\"Great success\n\");" >> ${PWD##*/}.c;
 		echo "	return 0;" >> ${PWD##*/}.c;
 		echo "}" >> ${PWD##*/}.c;
+		
 		echo "@ C project generated from a template. @";
 		;;
 
@@ -26,6 +28,10 @@ case $1 in
 	   	mkdir "$2";
 		cd "$2";
 		mkmake java;
+		
+		mkdir src;
+		cd src;
+		
 		echo "package ${PWD##*/};" > ${PWD##*/}.java;
         	echo "" >> ${PWD##*/}.java;
 		echo "public class ${PWD##*/}" >> ${PWD##*/}.java;
@@ -37,6 +43,7 @@ case $1 in
 		echo "	}" >> ${PWD##*/}.java;
 		echo "" >> ${PWD##*/}.java;
 		echo "}">> ${PWD##*/}.java;
+		
 		echo "@ Java project generated from a template. @";
 		;;
 
@@ -44,7 +51,9 @@ case $1 in
 		mkdir "$2";
 		cd "$2";
 		mkmake nodejs;
+		
 		echo "console.log(\"Great sucess\n\")" > ${PWD##*/}.js;
+		
 		echo "@ Node.js project generated from a template. @";
 		;;
 
@@ -52,7 +61,9 @@ case $1 in
 		mkdir "$2";
 		cd "$2";
 		mkmake prolog;
+		
 		echo "${PWD##*/}:-writeln('Great success')." > ${PWD##*/}.pl;
+		
 		echo "@ Prolog project generated from a template. @";
 		;;
 
@@ -60,7 +71,9 @@ case $1 in
 		mkdir "$2";
 		cd "$2";
 		mkmake python;
+		
 		echo "print \"Great success\";" > ${PWD##*/}.py;
+		
 		echo "@ Python project generated from a template. @";
 		;;
 
