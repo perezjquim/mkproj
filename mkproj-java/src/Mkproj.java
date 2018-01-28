@@ -65,31 +65,50 @@ public class Mkproj
 		main.start();																	
 	}
 	
-	// PROJECT GENERATION
+	/* PROJECT GENERATION */
 	public static void generateProject()
 	{
-		if(destination == null)														// Checks
-		{	IO.popup("No destination folder selected");		}
+		// If the user didn't select a destination folder
+		if(destination == null)														
+		{ IO.popup("No destination folder selected"); }
 		
+		// If the user did select a destination folder
 		else
 		{
+			// Gets the selected language
 			String lang = getSelectedOption();
 			
+			// If there was no language selected
 			if(lang == null)
 			{	IO.popup("No language selected");		}
 			
+			// If everything went well
 			else
 			{
+				// Gets the project name
 				String projName = name.getText();
+				
+				// Gets the folder path (ex.: /home/perezjquim/folderwheretheprojectisgoingto)
 				String folderPath = destination+"/"+projName;
+				
+				// Gets the source path (ex.: /home/perezjquim/folderwheretheprojectisgoingto/sourcefile)
+				// (the file extension will be added later, according to the language)
 				String srcPath =  folderPath+"/"+projName;
+				
+				// The project directory is created
 				Cmd.exec("mkdir "+projName,destination);
 				
 				switch(lang)
 				{
+					/* C */
 					case "C":
+						// The makefile is generated
 						Cmd.exec("mkmake c",new File(folderPath));
+						
+						// The file extension is added
 						srcPath += ".c";
+						
+						// The generic source code is written
 						IO.writeFile(srcPath,
 											"#include <stdio.h>\n"+
 											"#include <stdlib.h>\n"+
@@ -100,11 +119,20 @@ public class Mkproj
 											"	printf(\"Great success\\n\");\n"+
 											"	return 0;\n"+
 											"}");
+											
+						// Popup message
 						IO.popup("C project generated successfully");
 						break;
+						
+					/* JAVA */
 					case "Java":
+						// The makefile is generated
 						Cmd.exec("mkmake java",new File(folderPath));
+						
+						// The file extension is added
 						srcPath += ".java";
+						
+						// The generic source code is written
 						IO.writeFile(srcPath,
 											"package "+projName+";\n"+
 											"\n"+
@@ -115,40 +143,75 @@ public class Mkproj
 											"		System.out.println(\"Great success\");\n"+
 											"	}\n"+
 											"}\n");
+											
+						// Popup message
 						IO.popup("Java project generated successfully");
 						break;
+						
+					/* NODE.JS */
 					case "Node.js":
+						// The makefile is generated
 						Cmd.exec("mkmake nodejs",new File(folderPath));
+						
+						// The file extension is added
 						srcPath += ".js";
+						
+						// The generic source code is written
 						IO.writeFile(srcPath,
 											"console.log(\"Great success\")");
+											
+						// Popup message
 						IO.popup("Node.js project generated successfully");
 						break;
+						
+					/* PYTHON */
 					case "Python":
+						// The makefile is generated
 						Cmd.exec("mkmake python",new File(folderPath));
+						
+						// The file extension is added
 						srcPath += ".py";
+						
+						// The generic source code is written
 						IO.writeFile(srcPath,
 											"print \"Great success\";");
+											
+						// Popup message
 						IO.popup("Python project generated successfully");
 						break;
+						
+					/* PROLOG */
 					case "Prolog":
+						// The makefile is generated
 						Cmd.exec("mkmake prolog",new File(folderPath));
+						
+						// The file extension is added
 						srcPath += ".pl";
+						
+						// The generic source code is written
 						IO.writeFile(srcPath,
 											projName+":-writeln('Great success').");
+											
+						// Popup message
 						IO.popup("Prolog project generated successfully");
 						break;
 				}			
 			}
 		}		
 	}
+	
+	/* GETS THE SELECTED LANGUAGE */
 	public static String getSelectedOption()
 	{
+		// Loop through all the options
 		for(RadioButton r : options)
 		{
-			if(r.isSelected())
-			{ return r.getText(); }
+			// If found a selected one
+			if(r.isSelected()) 
+				return r.getText();
 		}
+		
+		// In case nothing was selected
 		return null;
 	}
 }
