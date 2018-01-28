@@ -21,5 +21,7 @@ public class Template
 	public String getSrcExtension() { return srcExtension; }
 	
 	public void adaptCode(String projName)
-	{ srcCode.replace("projName",projName); }
+	{
+		srcCode = srcCode.replace("projName",projName);
+	}
 }
