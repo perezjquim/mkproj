@@ -21,7 +21,7 @@ public class Mkproj
 	private static final Template[] languages =
 												{
 													/* C */
-													new Template("C","c",".c",
+													new Template("C","c",".c", false,
 														"#include <stdio.h>\n"+
 														"#include <stdlib.h>\n"+
 														"#include <unistd.h>\n"+
@@ -33,7 +33,7 @@ public class Mkproj
 														"}"),
 														
 													/* JAVA */
-													new Template("Java","java",".java",
+													new Template("Java","java",".java", true,
 														"package projName;\n"+
 														"\n"+
 														"public class projName\n"+
@@ -45,15 +45,15 @@ public class Mkproj
 														"}\n"),
 														
 													/* NODE.JS */
-													new Template("Node.js","nodejs",".js",
+													new Template("Node.js","nodejs",".js", false,
 														"console.log(\"Great success\");"),
 														
 													/* PYTHON */
-													new Template("Python","python",".py",
+													new Template("Python","python",".py", false,
 														"print \"Great success\";"),
 														
 													/* PROLOG */
-													new Template("Prolog","prolog",".pl",
+													new Template("Prolog","prolog",".pl", false,
 														"projName:-writeln('Great success').")
 												};
 				
@@ -126,20 +126,35 @@ public class Mkproj
 				// Gets the project name typed in by the user
 				String projName = name.getText();
 				
-				// Gets the folder path (ex.: /home/perezjquim/awesomeproject)
-				String folderPath = destination+"/"+projName;
-				
-				// Gets the source path (ex.: /home/perezjquim/awesomeproject/awesomeproject.js)
-				String srcPath =  folderPath+"/"+projName+lang.getSrcExtension();
-				
 				// Adapts the source code to the project name (ex.: name of the class)
 				lang.adaptCode(projName);
 				
 				// The project directory is created
 				Cmd.exec("mkdir "+projName,destination);
 				
+				// Gets the folder path (ex.: /home/perezjquim/awesomeproject)
+				File folderPath = new File(destination+"/"+projName);
+				
+				// The source file path is initialized with the project's folder (to be appended later)
+				String srcPath = folderPath.getPath()+"/";
+				
+				// If the language requires 'bin' and 'src' organization (ex.: Java)
+				if(lang.hasFolderStructure())
+				{
+					// 'bin' and 'src' folders are created
+					Cmd.exec("mkdir bin",folderPath);
+					Cmd.exec("mkdir src",folderPath);
+					
+					// 'src' folder is added to the path
+					srcPath += "src/";
+				}
+				
+				// The source file name is added to the path 
+				// (ex.: /home/perezjquim/awesomeproject/awesomeproject.js or /home/perezjquim/awesomeproject/src/awesomeproject.java)
+				srcPath += projName+lang.getSrcExtension();
+				
 				// Generates the makefile
-				Cmd.exec("mkmake "+lang.getCmdArgument(),new File(folderPath));
+				Cmd.exec("mkmake "+lang.getCmdArgument(),folderPath);
 				
 				// Writes the generic source code to the file
 				IO.writeFile(srcPath,lang.getSrcCode());

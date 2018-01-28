@@ -15,19 +15,24 @@ public class Template
 	// Ex.: ".c"
 	private String srcExtension;
 	
-	public Template(String label, String cmdArgument, String srcExtension, String srcCode)
+	// Indicates if the language requires 'bin' and 'src' folders
+	private boolean folderStructure;
+	
+	public Template(String label, String cmdArgument, String srcExtension, boolean folderStructure, String srcCode)
 	{
 		this.label = label;	
 		this.cmdArgument = cmdArgument;
 		this.srcExtension = srcExtension;
+		this.folderStructure = folderStructure;
 		this.srcCode = srcCode;
 	}
 	
 	// Getters
 	public String getLabel() { return label; }
 	public String getCmdArgument() { return cmdArgument; }
-	public String getSrcCode() { return srcCode; }
 	public String getSrcExtension() { return srcExtension; }
+	public boolean hasFolderStructure() { return folderStructure; }
+	public String getSrcCode() { return srcCode; }
 	
 	// Adapts the source code, according to the project name
 	public void adaptCode(String projName)
