@@ -11,15 +11,15 @@ case $1 in
 		cd "$2";
 		mkmake c;
 		
-		echo "#include <stdio.h>" > ${PWD##*/}.c;
-		echo "#include <stdlib.h>" >> ${PWD##*/}.c;
-		echo "#include <unistd.h>" >> ${PWD##*/}.c;
-		echo "" >> ${PWD##*/}.c;
-        	echo "int main()" >> ${PWD##*/}.c;
-		echo "{" >> ${PWD##*/}.c;
-		echo "	printf(\"Great success\n\");" >> ${PWD##*/}.c;
-		echo "	return 0;" >> ${PWD##*/}.c;
-		echo "}" >> ${PWD##*/}.c;
+		echo "#include <stdio.h>" > $2.c;
+		echo "#include <stdlib.h>" >> $2.c;
+		echo "#include <unistd.h>" >> $2.c;
+		echo "" >> $2.c;
+        	echo "int main()" >> $2.c;
+		echo "{" >> $2.c;
+		echo "	printf(\"Great success\n\");" >> $2.c;
+		echo "	return 0;" >> $2.c;
+		echo "}" >> $2.c;
 		
 		echo "@ C project generated from a template. @";
 		;;
@@ -32,17 +32,17 @@ case $1 in
 		mkdir src;
 		cd src;
 		
-		echo "package ${PWD##*/};" > ${PWD##*/}.java;
-        	echo "" >> ${PWD##*/}.java;
-		echo "public class ${PWD##*/}" >> ${PWD##*/}.java;
-		echo "{" >> ${PWD##*/}.java;
-		echo "" >> ${PWD##*/}.java;
-		echo "	public static void main(String[] args)" >> ${PWD##*/}.java;
-		echo "	{" >> ${PWD##*/}.java;
-		echo "		System.out.println(\"Great success\");" >> ${PWD##*/}.java;
-		echo "	}" >> ${PWD##*/}.java;
-		echo "" >> ${PWD##*/}.java;
-		echo "}">> ${PWD##*/}.java;
+		echo "package $2;" > $2.java;
+        	echo "" >> $2.java;
+		echo "public class $2" >> $2.java;
+		echo "{" >> $2.java;
+		echo "" >> $2.java;
+		echo "	public static void main(String[] args)" >> $2.java;
+		echo "	{" >> $2.java;
+		echo "		System.out.println(\"Great success\");" >> $2.java;
+		echo "	}" >> $2.java;
+		echo "" >> $2.java;
+		echo "}">> $2.java;
 		
 		echo "@ Java project generated from a template. @";
 		;;
@@ -52,7 +52,7 @@ case $1 in
 		cd "$2";
 		mkmake nodejs;
 		
-		echo "console.log(\"Great sucess\n\")" > ${PWD##*/}.js;
+		echo "console.log(\"Great sucess\n\")" > $2.js;
 		
 		echo "@ Node.js project generated from a template. @";
 		;;
@@ -62,7 +62,7 @@ case $1 in
 		cd "$2";
 		mkmake prolog;
 		
-		echo "${PWD##*/}:-writeln('Great success')." > ${PWD##*/}.pl;
+		echo "$2:-writeln('Great success')." > $2.pl;
 		
 		echo "@ Prolog project generated from a template. @";
 		;;
@@ -72,7 +72,7 @@ case $1 in
 		cd "$2";
 		mkmake python;
 		
-		echo "print \"Great success\";" > ${PWD##*/}.py;
+		echo "print \"Great success\";" > $2.py;
 		
 		echo "@ Python project generated from a template. @";
 		;;
