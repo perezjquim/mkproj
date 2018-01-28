@@ -30,6 +30,17 @@ public class Cmd
 		{ e.printStackTrace(); }
 	}	
 	
+	public static void exec(String cmd,File directory)
+	{
+		try
+		{
+			Process p = Runtime.getRuntime().exec(cmd,null,directory);
+			p.waitFor();
+		}
+		catch (InterruptedException | IOException e)
+		{ e.printStackTrace(); }
+	}	
+	
 	public static void readStream(InputStream stream, JTextArea output)
 	{
 		BufferedReader reader;

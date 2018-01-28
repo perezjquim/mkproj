@@ -1,11 +1,12 @@
 package perezjquim.GUI;
+import java.io.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
 public class IO
 {
-	public static String askFolder()
+	public static File askFolder()
 	{
 		JFileChooser chooser = new JFileChooser();
 		chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
@@ -13,11 +14,11 @@ public class IO
 		int state = chooser.showOpenDialog(new JFrame());
 		if(state == JFileChooser.APPROVE_OPTION) 
 		{
-			return chooser.getSelectedFile().getAbsolutePath();
+			return chooser.getSelectedFile();
 		}
-		else return "";
+		else return null;
 	}
-	public static String askFile()
+	public static File askFile()
 	{
 		JFileChooser chooser = new JFileChooser();
 		chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
@@ -25,9 +26,9 @@ public class IO
 		int state = chooser.showOpenDialog(new JFrame());
 		if(state == JFileChooser.APPROVE_OPTION) 
 		{
-			return chooser.getSelectedFile().getAbsolutePath();
+			return chooser.getSelectedFile();
 		}
-		else return "";
+		else return null;
 	}
 	public static void popup(String message)
 	{
