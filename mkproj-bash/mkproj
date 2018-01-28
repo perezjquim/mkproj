@@ -29,6 +29,7 @@ case $1 in
 		cd "$2";
 		mkmake java;
 		
+		mkdir bin;
 		mkdir src;
 		cd src;
 		
