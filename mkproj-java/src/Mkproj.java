@@ -14,9 +14,14 @@ public class Mkproj
 	/* FIELD FOR THE PROJECT NAME */
 	private static TextField name;
 	
+	/* STORAGE OF ALL RADIO BUTTONS */													
+	private static RadioButton[] radios;
+	
+	/* SELECTABLE PROGRAMMING LANGUAGES (and its project templates) */
 	private static final Template[] languages =
 												{
-													new Template("c","C",".c",
+													/* C */
+													new Template("C","c",".c",
 														"#include <stdio.h>\n"+
 														"#include <stdlib.h>\n"+
 														"#include <unistd.h>\n"+
@@ -26,7 +31,9 @@ public class Mkproj
 														"	printf(\"Great success\\n\");\n"+
 														"	return 0;\n"+
 														"}"),
-													new Template("java","Java",".java",
+														
+													/* JAVA */
+													new Template("Java","java",".java",
 														"package projName;\n"+
 														"\n"+
 														"public class projName\n"+
@@ -36,19 +43,25 @@ public class Mkproj
 														"		System.out.println(\"Great success\");\n"+
 														"	}\n"+
 														"}\n"),
-													new Template("nodejs","Node.js",".js",
+														
+													/* NODE.JS */
+													new Template("Node.js","nodejs",".js",
 														"console.log(\"Great success\");"),
-													new Template("python","Python",".py",
+														
+													/* PYTHON */
+													new Template("Python","python",".py",
 														"print \"Great success\";"),
-													new Template("prolog","Prolog",".pl",
+														
+													/* PROLOG */
+													new Template("Prolog","prolog",".pl",
 														"projName:-writeln('Great success').")
 												};
-	private static RadioButton[] radios;
 				
 	/* MAIN FUNCTION */									 
 	public static void main(String[] args)
 	{
 		main = new GUI("Mkproj");
+
 
 		/* PANEL 'PROJECT NAME' */
 		Panel panName = new Panel("Project name");
@@ -64,7 +77,7 @@ public class Mkproj
 		// The options/radio buttons are added to the panel
 		radios = new RadioButton[languages.length];
 		for(int i = 0; i < languages.length; i++)
-			radios[i] = new RadioButton(languages[i].getLabel());
+		{ radios[i] = new RadioButton(languages[i].getLabel()); }
 		panLang.addButtonGroup(radios);									
 		main.add(panLang);
 		
@@ -84,6 +97,7 @@ public class Mkproj
 							}));
 							
 		main.add(panGen);
+		
 		
 		// The main window becomes visible
 		main.start();																	
@@ -109,23 +123,28 @@ public class Mkproj
 			// If everything went well
 			else
 			{
-				// Gets the project name
+				// Gets the project name typed in by the user
 				String projName = name.getText();
 				
-				// Gets the folder path (ex.: /home/perezjquim/folderwheretheprojectisgoingto)
+				// Gets the folder path (ex.: /home/perezjquim/awesomeproject)
 				String folderPath = destination+"/"+projName;
 				
-				// Gets the source path (ex.: /home/perezjquim/folderwheretheprojectisgoingto/sourcefile)
-				// (the file extension will be added later, according to the language)
-				String srcPath =  folderPath+"/"+projName;
+				// Gets the source path (ex.: /home/perezjquim/awesomeproject/awesomeproject.js)
+				String srcPath =  folderPath+"/"+projName+lang.getSrcExtension();
+				
+				// Adapts the source code to the project name (ex.: name of the class)
+				lang.adaptCode(projName);
 				
 				// The project directory is created
 				Cmd.exec("mkdir "+projName,destination);
 				
-				lang.adaptCode(projName);
-				Cmd.exec("mkmake "+lang.getName(),new File(folderPath));
-				srcPath += lang.getSrcExtension();
+				// Generates the makefile
+				Cmd.exec("mkmake "+lang.getCmdArgument(),new File(folderPath));
+				
+				// Writes the generic source code to the file
 				IO.writeFile(srcPath,lang.getSrcCode());
+				
+				// Popup message
 				IO.popup(lang.getLabel()+" project generated successfully");	
 			}
 		}		
