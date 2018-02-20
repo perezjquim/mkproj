@@ -8,5 +8,5 @@ update:
 
 repackage:
 	@echo "@Repackaging...@"
-	@dpkg-deb --build mkproj-deb mkproj-install > /dev/null
+	@dpkg-deb --build mkproj-deb mkproj-install.deb > /dev/null
 	@echo "@Repackaged!@"
