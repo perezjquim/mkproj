@@ -29,7 +29,7 @@
 
 `mkproj prolog acertainprologproject`
 
-### <a href="https://github.com/perezjquim/mkproj/raw/master/mkproj.deb">DOWNLOAD</a> (.deb)
+### <a href="https://github.com/perezjquim/mkproj/raw/master/mkproj-install.deb">DOWNLOAD</a> (.deb)
 
 
 
