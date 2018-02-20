@@ -1,0 +1,86 @@
+#!/bin/bash
+
+###############
+## MAKEPROJ ##
+###############
+
+case $1 in
+
+	c)
+        	mkdir "$2";
+		cd "$2";
+		mkmake c;
+		
+		echo "#include <stdio.h>" > $2.c;
+		echo "#include <stdlib.h>" >> $2.c;
+		echo "#include <unistd.h>" >> $2.c;
+		echo "" >> $2.c;
+        	echo "int main()" >> $2.c;
+		echo "{" >> $2.c;
+		echo "	printf(\"Great success\n\");" >> $2.c;
+		echo "	return 0;" >> $2.c;
+		echo "}" >> $2.c;
+		
+		echo "@ C project generated from a template. @";
+		;;
+
+	java)
+	   	mkdir "$2";
+		cd "$2";
+		mkmake java;
+		
+		mkdir bin;
+		mkdir src;
+		cd src;
+		
+		echo "package $2;" > $2.java;
+        	echo "" >> $2.java;
+		echo "public class $2" >> $2.java;
+		echo "{" >> $2.java;
+		echo "" >> $2.java;
+		echo "	public static void main(String[] args)" >> $2.java;
+		echo "	{" >> $2.java;
+		echo "		System.out.println(\"Great success\");" >> $2.java;
+		echo "	}" >> $2.java;
+		echo "" >> $2.java;
+		echo "}">> $2.java;
+		
+		echo "@ Java project generated from a template. @";
+		;;
+
+	nodejs)
+		mkdir "$2";
+		cd "$2";
+		mkmake nodejs;
+		
+		echo "console.log(\"Great sucess\n\")" > $2.js;
+		
+		echo "@ Node.js project generated from a template. @";
+		;;
+
+	prolog)
+		mkdir "$2";
+		cd "$2";
+		mkmake prolog;
+		
+		echo "$2:-writeln('Great success')." > $2.pl;
+		
+		echo "@ Prolog project generated from a template. @";
+		;;
+
+	python)
+		mkdir "$2";
+		cd "$2";
+		mkmake python;
+		
+		echo "print \"Great success\";" > $2.py;
+		
+		echo "@ Python project generated from a template. @";
+		;;
+
+	*)
+		echo "@ Invalid option. @";
+		echo "@ Try again. (example: 'mkproj c acertaincproject' ou 'mkproj java acertainjavaproject'). @";
+		;;
+
+esac

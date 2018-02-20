@@ -1,0 +1,5 @@
+Package: Mkproj
+Maintainer: perezjquim
+Architecture: all
+Version: 1.0
+Description: Project environment generator (to speed up software project set-up phase)
