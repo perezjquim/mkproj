@@ -54,7 +54,19 @@ public class Mkproj
 														
 													/* PROLOG */
 													new Template("Prolog","prolog",".pl", false,
-														"projName:-writeln('Great success').")
+														"projName:-writeln('Great success')."),
+
+													/* C# */
+													new Template("C#","c#",".cs",false,
+														"using System;\n"+
+														"\n"+
+														"public class projName\n"+
+														"{\n"+
+														"	public static void Main(String[] args)\n"+
+														"	{\n"+
+														"		System.Console.WriteLine(\"Great success\");\n"+
+														"	}\n"+
+														"}\n")
 												};
 				
 	/* MAIN FUNCTION */									 
