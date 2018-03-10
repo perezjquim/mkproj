@@ -77,6 +77,26 @@ case $1 in
 		
 		echo "@ Python project generated from a template. @";
 		;;
+		
+	c#)
+		mkdir "$2";
+		cd "$2";
+		mkmake c#;
+
+		echo "using System;" > $2.cs;
+        	echo "" >> $2.cs;
+		echo "public class $2" >> $2.cs;
+		echo "{" >> $2.cs;
+		echo "" >> $2.cs;
+		echo "	public static void Main(String[] args)" >> $2.cs;
+		echo "	{" >> $2.cs;
+		echo "		System.Console.WriteLine(\"Great success\");" >> $2.cs;
+		echo "	}" >> $2.cs;
+		echo "" >> $2.cs;
+		echo "}">> $2.cs;
+		
+		echo "@ C# project generated from a template. @";	
+		;;
 
 	*)
 		echo "@ Invalid option. @";
