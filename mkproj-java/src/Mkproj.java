@@ -17,57 +17,15 @@ public class Mkproj
 	/* STORAGE OF ALL RADIO BUTTONS */													
 	private static RadioButton[] radios;
 	
-	/* SELECTABLE PROGRAMMING LANGUAGES (and its project templates) */
-	private static final Template[] languages =
-												{
-													/* C */
-													new Template("C","c",".c", false,
-														"#include <stdio.h>\n"+
-														"#include <stdlib.h>\n"+
-														"#include <unistd.h>\n"+
-														"\n"+
-														"int main()\n"+
-														"{\n"+
-														"	printf(\"Great success\\n\");\n"+
-														"	return 0;\n"+
-														"}"),
-														
-													/* JAVA */
-													new Template("Java","java",".java", true,
-														"package projName;\n"+
-														"\n"+
-														"public class projName\n"+
-														"{\n"+
-														"	public static void main(String[] args)\n"+
-														"	{\n"+
-														"		System.out.println(\"Great success\");\n"+
-														"	}\n"+
-														"}\n"),
-														
-													/* NODE.JS */
-													new Template("Node.js","nodejs",".js", false,
-														"console.log(\"Great success\");"),
-														
-													/* PYTHON */
-													new Template("Python","python",".py", false,
-														"print \"Great success\";"),
-														
-													/* PROLOG */
-													new Template("Prolog","prolog",".pl", false,
-														"projName:-writeln('Great success')."),
-
-													/* C# */
-													new Template("C#","c#",".cs",false,
-														"using System;\n"+
-														"\n"+
-														"public class projName\n"+
-														"{\n"+
-														"	public static void Main(String[] args)\n"+
-														"	{\n"+
-														"		System.Console.WriteLine(\"Great success\");\n"+
-														"	}\n"+
-														"}\n")
-												};
+	private static final String languages[] = { 
+												"C", 
+												"C#", 
+												"Java" , 
+												"Node.js", 
+												"Python", 
+												"Prolog", 
+												"Swift" 
+											};										
 				
 	/* MAIN FUNCTION */									 
 	public static void main(String[] args)
@@ -89,7 +47,7 @@ public class Mkproj
 		// The options/radio buttons are added to the panel
 		radios = new RadioButton[languages.length];
 		for(int i = 0; i < languages.length; i++)
-		{ radios[i] = new RadioButton(languages[i].getLabel()); }
+		{ radios[i] = new RadioButton(languages[i]); }
 		panLang.addButtonGroup(radios);									
 		main.add(panLang);
 		
@@ -118,78 +76,40 @@ public class Mkproj
 	/* PROJECT GENERATION */
 	public static void generateProject()
 	{
-		// If the user didn't select a destination folder
-		if(destination == null)														
-		{ IO.popup("No destination folder selected"); }
-		
-		// If the user did select a destination folder
-		else
-		{
-			// Gets the selected language
-			Template lang = getSelectedLanguage();
-			
-			// If there was no language selected
-			if(lang == null)
-			{	IO.popup("No language selected");		}
-			
-			// If everything went well
-			else
-			{
-				// Gets the project name typed in by the user
-				String projName = name.getText();
-				
-				// Adapts the source code to the project name (ex.: name of the class)
-				lang.adaptCode(projName);
-				
-				// The project directory is created
-				Cmd.exec("mkdir "+projName,destination);
-				
-				// Gets the folder path (ex.: /home/perezjquim/awesomeproject)
-				File folderPath = new File(destination+"/"+projName);
-				
-				// The source file path is initialized with the project's folder (to be appended later)
-				String srcPath = folderPath.getPath()+"/";
-				
-				// If the language requires 'bin' and 'src' organization (ex.: Java)
-				if(lang.hasFolderStructure())
-				{
-					// 'bin' and 'src' folders are created
-					Cmd.exec("mkdir bin",folderPath);
-					Cmd.exec("mkdir src",folderPath);
-					
-					// 'src' folder is added to the path
-					srcPath += "src/";
-				}
-				
-				// The source file name is added to the path 
-				// (ex.: /home/perezjquim/awesomeproject/awesomeproject.js or /home/perezjquim/awesomeproject/src/awesomeproject.java)
-				srcPath += projName+lang.getSrcExtension();
-				
-				// Generates the makefile
-				Cmd.exec("mkmake "+lang.getCmdArgument(),folderPath);
-				
-				// Writes the generic source code to the file
-				IO.writeFile(srcPath,lang.getSrcCode());
-				
-				// Popup message
-				IO.popup(lang.getLabel()+" project generated successfully");	
-			}
-		}		
-	}
-	
-	/* GETS THE SELECTED LANGUAGE */
-	public static Template getSelectedLanguage()
-	{
+		int selectedRadio = -1;
+
 		// Loop through all the options
 		for(int i = 0; i < radios.length; i++)
 		{
 			// If found a selected one
 			if(radios[i].isSelected()) 
-				return languages[i];
+				selectedRadio = i;
+		}
+
+		// If the user didn't select a destination folder
+		if(destination == null)														
+		{ 
+			IO.popup("No destination folder selected"); 
+			return;
+		}
+
+		if(selectedRadio == -1)
+		{
+			IO.popup("No language selected");
+			return;
 		}
 		
-		// In case nothing was selected
-		return null;
+		// Gets the project name typed in by the user
+		String projName = name.getText();			
+
+
+		String language = languages[selectedRadio]
+								.toLowerCase()
+								.replace(".","");
+
+		Cmd.exec("mkproj " + language + " "+projName, destination);	
+
+		IO.popup("Project generated successfully!");
 	}
 }
 

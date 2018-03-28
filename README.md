@@ -5,11 +5,12 @@
 ## Programming languages available:
 
 - Java
-- C
+- C/C++
 - C#
 - Nodejs
 - Prolog
 - Python
+- Swift
 
 ### In short, it creates includes a directory that has a makefile (specific to the programming language) and generic source-code ready to be compiled and executed. Depends on another script of mine - <a href="https://github.com/perezjquim/mkmake">mkmake</a>.
 

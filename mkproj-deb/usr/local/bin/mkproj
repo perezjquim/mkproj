@@ -98,6 +98,16 @@ case $1 in
 		echo "@ C# project generated from a template. @";	
 		;;
 
+	swift)
+		mkdir "$2";
+		cd "$2";
+		mkmake swift;
+
+		echo 'print("Great success");' > main.swift;
+
+		echo "@ Swift project generated from a template. @";
+		;;
+
 	*)
 		echo "@ Invalid option. @";
 		echo "@ Try again. (example: 'mkproj c acertaincproject' ou 'mkproj java acertainjavaproject'). @";
