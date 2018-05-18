@@ -108,6 +108,85 @@ case $1 in
 		echo "@ Swift project generated from a template. @";
 		;;
 
+	sap)
+		mkdir "$2"
+		cd "$2"
+
+    echo '<!DOCTYPE HTML>
+    			<html>
+						<head>
+							<!-- CONFIG -->		
+							<meta http-equiv="X-UA-Compatible" content="IE=edge">
+							<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+							<title>'$2'</title>
+							<script 
+								id="sap-ui-bootstrap" 
+								type="text/javascript" 
+								src="https://openui5.netweaver.ondemand.com/1.28.15/resources/sap-ui-core.js" 
+								data-sap-ui-theme="sap_bluecrystal" 
+								data-sap-ui-xx-bindingSyntax="complex" 
+								data-sap-ui-libs="sap.m"
+								data-sap-ui-resourceroots='"'{ \"ui5bp\": \"./\" }'>
+					    </script>
+					    <script src='extra.js'>
+					    </script>
+
+							<script>
+							sap.ui.localResources('pages');
+							loadXML('pages.home');
+							</script>
+
+						</head>
+						<body class='sapUiBody' role='application'>
+							<div id='content'></div>
+						</body>
+					</html>'" > index.html
+
+		echo 'function loadXML(_name)
+					{
+						new sap.m.App()
+							.addPage(new sap.ui.view({viewName:_name, type:sap.ui.core.mvc.ViewType.XML}))
+							.placeAt("content");
+					}' > extra.js
+
+	  mkdir pages
+	  cd pages
+	  echo 'sap.ui.define(["sap/ui/core/mvc/Controller"],
+						function(Controller) {
+						"use strict";
+
+						var PageController = Controller.extend("pages.home", {
+
+								//
+								//...
+								//
+						
+						});
+						
+						return PageController;
+
+					});' > home.controller.js
+
+		echo '<mvc:View
+						xmlns:mvc="sap.ui.core.mvc" 
+						xmlns="sap.m"
+						controllerName="pages.home"> 
+						<VBox
+							class="sapUiContentPadding"
+							width="100%"
+							alignItems="Center"
+							justifyContent="Center">
+							<items>
+								<!--- -->
+							</items>
+						</VBox>
+					</mvc:View>' > home.view.xml
+
+		echo "@ SAPUI5 project generated from a template. @";					
+
+		;;
+
+
 	*)
 		echo "@ Invalid option. @";
 		echo "@ Try again. (example: 'mkproj c acertaincproject' ou 'mkproj java acertainjavaproject'). @";
