@@ -15,13 +15,13 @@
 ### In short, it creates includes a directory that has a makefile (specific to the programming language) and generic source-code ready to be compiled and executed. Depends on another script of mine - <a href="https://github.com/perezjquim/mkmake">mkmake</a>.
 
 ## Example of use (GUI):
-<img src="http://imgur.com/AZRXryNl.png"/>
+<img src="https://imgur.com/AZRXryNl.png"/>
 ***
-<img src="http://imgur.com/YgIoCJUl.png"/>
+<img src="https://imgur.com/YgIoCJUl.png"/>
 ***
-<img src="http://imgur.com/fepSBT0l.png"/>
+<img src="https://imgur.com/fepSBT0l.png"/>
 ***
-<img src="http://imgur.com/WACRKVAl.png"/>
+<img src="https://imgur.com/WACRKVAl.png"/>
 
 ## Examples of use (CLI):
 
